@@ -129,3 +129,18 @@ export const PC_PRODUCT_LIST: ProductListType = [
     },
   },
 ];
+
+export const BREAK_POINT = {
+  "640": {
+    slidesPerView: 1,
+  },
+  "768": {
+    slidesPerView: 2,
+  },
+  "1024": {
+    slidesPerView: 3,
+  },
+  "1280": {
+    slidesPerView: 4,
+  },
+};
