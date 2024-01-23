@@ -2,7 +2,14 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 
-export const Card = () => {
+import { ProductDetailsType } from "@/types";
+
+type ProductCardProps = {
+  product: ProductDetailsType;
+};
+
+export const Card = ({ product }: ProductCardProps) => {
+  console.log(Object.values(product.specs));
   return (
     <div className="flex h-full flex-col justify-between rounded-[15px] shadow-[0_0_20px_#00000029] ">
       <div className="relative flex h-full flex-col gap-2 !p-5">
@@ -10,7 +17,11 @@ export const Card = () => {
         <span className="absolute">
           <div className="h-[18px] w-[66px] sm:h-[22px] sm:w-[83px]">
             <Image
-              src="/prebuild_badge.svg"
+              src={
+                product.type === "custom"
+                  ? "/custom_badge.svg"
+                  : "/prebuild_badge.svg"
+              }
               fill={true}
               alt={""}
               loading="lazy"
@@ -35,18 +46,16 @@ export const Card = () => {
           {/* pc title */}
           <Link href="/">
             <h4 className="min-h-[26px] text-[16px] font-bold leading-[18px] sm:text-[20px] sm:leading-[22px]">
-              Creator RDY Y40BG201
+              {product.title}
             </h4>
           </Link>
           {/* review star */}
           <span className="h-2 sm:h-4"></span>
           {/* pc spec */}
-          <ul className="flex flex-col gap-2 text-[12px] leading-[20px] sm:text-[16px] sm:leading-[20px]">
-            <li>Windows 11 Pro</li>
-            <li>Intel® Core™ i9-13900KF CPU</li>
-            <li>GeForce RTX 4090 - 24GB</li>
-            <li>2TB M.2 NVMe GEN4 SSD</li>
-            <li>32GB DDR5-6000MHz RGB RAM</li>
+          <ul className="flex overflow-hidden flex-col gap-2 text-[12px] leading-[20px] sm:text-[16px] sm:leading-[20px]">
+            {Object.values(product.specs).map((text) => (
+              <li className="whitespace-normal">{text}</li>
+            ))}
           </ul>
         </div>
       </div>
@@ -55,7 +64,7 @@ export const Card = () => {
         {/* save price */}
         <div className="flex w-min gap-1 rounded-full bg-[#FF1B1B] px-2 py-1 text-[10px] leading-[11px] text-white sm:text-[12px] sm:leading-[13px]">
           <span>SAVE</span>
-          <span>$400</span>
+          <span>${product.pricing?.savePrice}</span>
         </div>
         {/* price */}
         <div className="mt-1 flex h-fit items-end gap-3">
@@ -75,16 +84,14 @@ export const Card = () => {
         </button>
         <div className="mt-3 flex items-center justify-between">
           <div className="flex flex-col items-start justify-around">
-            {/* free shipping */}
             <span className="text-[12px] font-bold leading-[24px] sm:text-[14px]">
               Free Shipping
             </span>
-            {/* delivery day */}
             <span className="text-[12px] leading-[20px] sm:text-[14px]">
               Delivery By Wednesday, Jan 24
             </span>
           </div>
-          <div>
+          <div className="shrink-0">
             <Link href="/">
               <button
                 className="box-border rounded-full border-2 border-[#FF1B1B] px-[12px] py-[4px] text-[14px] leading-[23px] tracking-[-0.21px] text-[#FF1B1B] sm:text-[16px]"

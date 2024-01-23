@@ -8,6 +8,7 @@ import { Card as ProductCard } from "./Card";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import { PC_PRODUCT_LIST } from "@/constants";
 
 export const Slides = () => {
   return (
@@ -15,48 +16,26 @@ export const Slides = () => {
       <Swiper
         spaceBetween={16}
         breakpoints={{
-          // when window width is >= 320px
           640: {
             slidesPerView: 1,
           },
           768: {
             slidesPerView: 2,
           },
-          // when window width is >= 480px
           1024: {
             slidesPerView: 3,
           },
-          // when window width is >= 640px
           1280: {
             slidesPerView: 4,
           },
         }}
-        className="!p-4"
+        className="!p-4 flex"
       >
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
+        {PC_PRODUCT_LIST.map((product) => (
+          <SwiperSlide>
+            <ProductCard product={product}/>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
