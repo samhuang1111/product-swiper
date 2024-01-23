@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useCallback, useEffect, useRef, useState } from "react";
+import React, {  useEffect, useRef, useState } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper/types";
