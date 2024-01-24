@@ -11,7 +11,7 @@ export const Product = () => {
     <>
       <ProductSlides list={PC_PRODUCT_LIST} />
       <button
-        className="mt-[72px] rounded-lg bg-blue-500 p-4 text-white"
+        className="absolute top-0 right-0 rounded-lg bg-blue-500 px-2 py-1 text-[12px] text-white"
         onClick={() => {
           setTestAction(!testAction);
         }}
